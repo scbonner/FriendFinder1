@@ -198,6 +198,9 @@
 		} else if($("#question1").val() === "empty" || $("#question2").val() === "empty" || $("#question3").val() === "empty" || $("#question4").val() === "empty" || $("#question5").val() === "empty" || $("#question6").val() === "empty" || $("#question7").val() === "empty" || $("#question8").val() === "empty" || $("#question9").val() === "empty" || $("#question10").val() === "empty") {
 			valid = false;
 		}
+
+
+		
 // If participant finds a friend through query (10 questions), provide name and picture
 		if(valid === true) {
 			let newUser = {
@@ -216,11 +219,36 @@
 					$("#question10").val()
 				]
 			};
-			let currentURL = window.location.origin;
+			let index; 
+			let newValue = -1;
+
+			$.get("/api/friends", function(data) {
+				for (var i = 0; i < data.length;  i++) {
+					let value = 0
+				
+				for (var j = 0; j < data[i].scores.length;  j++) {
+			if (newUser.scores[j] == data[i].scores[j]) {
+				value += 50
+			}
+			
+
+			if (value > newValue) {
+				index = i;
+				newValue = value
+			
+			}
+				}
+			
+			}	
+		
+			$("#bestFriend").text(data[index].name)
+			
+			$("#bestFriendPhoto").attr("src", data[index].photo)
+			})
 			// Ajax call for receiving response after POST req
-			$.post(currentURL + "/api/friends", newUser, function(data) {
-				$("#bestFriend").text(data.name);
-				$("#bestFriendPhoto").attr("src", data.photo);
+			$.post("/api/friends", newUser).then (function(data) {
+				// $("#bestFriend").text(data.name);
+				// $("#bestFriendPhoto").attr("src", data.photo);
 				$("#bestFriendModal").modal("toggle");
 			});
 		} else {
