@@ -1,1 +1,16 @@
-# FriendFinder1
+
+# Friend Finder - Node and Express Servers
+
+### Overview
+
+In this activity, you'll build a compatibility-based "FriendFinder" application -- basically a dating app. This full-stack site will take in results from your users' surveys, then compare their answers with those from other users. The app will then display the name and picture of the user with the best overall match.
+
+You will use Express to handle routing. Make sure you deploy your app to Heroku so other users can fill it out.
+
+
+### Minimum Requirements
+
+Attempt to complete homework assignment as described in instructions. If unable to complete certain portions, please pseudocode these portions to describe what remains to be completed. Adding a README.md as well as adding this homework to your portfolio are required as well and more information can be found below. **This assignment must be deployed.**
+
+- - -
+
